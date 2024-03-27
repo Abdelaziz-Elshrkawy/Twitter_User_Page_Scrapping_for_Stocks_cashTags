@@ -13,11 +13,12 @@ def scrape_twitter_user(username):
     user_cashTag = []
     pattern = r'\$[A-Za-z]+\s*[^\$]*'
     sys.stdout.reconfigure(encoding='utf-8')
-    # chrome driver
+    # using chrome driver to simulate user browsing
     driver = './chromedriver-win64/chromedriver.exe'
     service = Service(driver)
 
     chrome_options = Options()
+    # running chrome in the background if needed to show the chrome window just comment the two lines
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-gpu')
 
@@ -28,6 +29,7 @@ def scrape_twitter_user(username):
     driver.get(f'{baseUrl}{username}')
     sleep(5)
     try:
+        # testing if the user is valid
         driver.find_element(By.XPATH,'//div[@data-testid="empty_state_header_text"]')
         print(Fore.RED,'Invalid user:', username)
         print(Style.RESET_ALL)
@@ -39,11 +41,9 @@ def scrape_twitter_user(username):
         driver.execute_script(f'window.scrollTo({height}, 20000);')
         height+=20000
         sleep(3)
+
+    # tracking the element containing the cashTag
     elements = driver.find_elements(By.XPATH,'//div[@data-testid="tweetText"]//span[@class="r-18u37iz"]//a')
-
-
-    # with open('./file.txt','w') as file:
-    #     file.write(str(''))
 
     for element in elements:
         cashTag = re.findall(pattern,element.text)
