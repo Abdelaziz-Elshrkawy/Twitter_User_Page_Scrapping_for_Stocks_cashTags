@@ -18,8 +18,8 @@ def scrape_twitter_user(username):
     service = Service(driver)
 
     chrome_options = Options()
-    # chrome_options.add_argument('--headless')
-    # chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-gpu')
 
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
