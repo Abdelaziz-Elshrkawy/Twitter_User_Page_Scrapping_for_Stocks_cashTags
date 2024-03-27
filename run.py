@@ -7,10 +7,13 @@ targetTag = input('insert targeted tag:\n').upper()
 time_input = input('insert desired time interval to run this script in minutes (if you want to run it once don\'t type any thing):\n')
 
 base_time_interval = 0
-if (time_input):
-    base_time_interval = int(time_input)*60
-    
-time_interval_increment = base_time_interval
+time_interval_increment = 0
+if time_input != '':
+    try:
+        base_time_interval = int(time_input)*60
+        time_interval_increment = base_time_interval
+    except:
+        pass
 
 all_cashTags = []
 
@@ -24,10 +27,10 @@ def loop():
         if isinstance(user_cashTags,list):
             all_cashTags.extend(user_cashTags)
         print('\n\n')
+    if time_interval_increment != 0:
         print(f'Result: {targetTag} was mentioned "{all_cashTags.count(targetTag)}" in the last {round(time_interval_increment/60,2)} minutes')
 
-
-if(base_time_interval):
+if base_time_interval:
     while True:
         all_cashTags = []
         loop()
@@ -35,5 +38,8 @@ if(base_time_interval):
         time_interval_increment += base_time_interval
 else:
     loop()
+
+if time_interval_increment == 0:  
+    print(f'Result: {targetTag} was mentioned "{all_cashTags.count(targetTag)}" in the last {round(time_interval_increment/60,2)} minutes')
 
 
