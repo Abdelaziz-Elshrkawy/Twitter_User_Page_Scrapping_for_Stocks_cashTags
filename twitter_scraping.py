@@ -13,6 +13,7 @@ def scrape_twitter_user(username):
     user_cashTag = []
     pattern = r'\$[A-Za-z]+\s*[^\$]*'
     sys.stdout.reconfigure(encoding='utf-8')
+    
     # using chrome driver to simulate user browsing
     driver = './chromedriver-win64/chromedriver.exe'
     service = Service(driver)

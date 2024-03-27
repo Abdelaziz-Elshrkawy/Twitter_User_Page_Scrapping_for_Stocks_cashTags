@@ -1,6 +1,6 @@
 from colorama import Fore, Style
 from time import sleep
-from scraping import scrape_twitter_user
+from twitter_scraping import scrape_twitter_user
 
 usernameArr = input('insert the usernames separated with a comma like this adam,ali....:\n').split(',')
 targetTag = input('insert targeted tag:\n').upper()
