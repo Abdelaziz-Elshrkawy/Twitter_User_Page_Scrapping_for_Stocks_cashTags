@@ -60,14 +60,3 @@ def scrape_twitter_user(username):
 
 
 
-
-
-
-# //div[@data-testid="tweetText"]
-
-
-
-# driver.quit()
-
-
-
