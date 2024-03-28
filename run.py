@@ -27,8 +27,9 @@ def loop():
         if isinstance(user_cashTags,list):
             all_cashTags.extend(user_cashTags)
         print('\n\n')
-    if time_interval_increment != 0:
-        print(f'Result: {targetTag} was mentioned "{all_cashTags.count(targetTag)}" in the last {round(time_interval_increment/60,2)} minutes')
+    tag_count = all_cashTags.count(targetTag)
+    result = f'Result: {targetTag} was mentioned "{tag_count}" {"time" if tag_count <= 1 else "times"} in the last {round(time_interval_increment/60,2)} minutes'
+    print(result)
 
 if base_time_interval:
     while True:
@@ -39,7 +40,6 @@ if base_time_interval:
 else:
     loop()
 
-if time_interval_increment == 0:  
-    print(f'Result: {targetTag} was mentioned "{all_cashTags.count(targetTag)}" in the last {round(time_interval_increment/60,2)} minutes')
+
 
 
